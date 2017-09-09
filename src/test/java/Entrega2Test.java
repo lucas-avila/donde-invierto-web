@@ -66,7 +66,6 @@ public class Entrega2Test extends AbstractPersistenceTest implements WithGlobalE
         agregarEmpresaViewModel = new AgregarEmpresaViewModel(archivo);
         cuentasViewModel.setArchivo(archivo);
         empresaViewModel.setArchivo(archivo);
-        
 	}
 	
 	/* ***************************************** TESTS ENTREGA 2 & ENTREGA 3 ********************************************** */
