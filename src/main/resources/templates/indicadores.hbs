@@ -1,0 +1,72 @@
+{{# partial "titulo" }}	
+<title>Donde Invierto</title>
+<script src="validarDatosIndicador.js"></script>
+{{/partial}}
+
+{{# partial "contenido" }}	
+
+<h4>Busca tu empresa por nombre:</h4>
+
+<form action="/indicadores" >
+	<div class="row">
+		<div class="col-sm-11 text-center line">
+			<input class="form-control mr-sm-2" type="search" placeholder="Ejemplo: ROE" aria-label="Search" name="filtroNombre">
+		</div>
+		<div class="col-md-1">
+			<button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Buscar</button>	
+		</div>
+	</div>
+</form>
+
+<button type="button" style="float: right" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+	Agregar Indicador
+</button>
+<table class="table">
+	<thead class="thead-inverse">
+		<tr>
+			<th>Indicador</th>
+			<th>Formula</th>
+			<th width="1">Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{{#indicadores}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{formula}}</td>
+			<td width="1"><a class="btn btn-outline-danger my-2 my-sm-0" href="/indicadores/{{nombre}}" role="button">Aplicar</a></td>
+		</tr>
+		{{/indicadores}}
+	</tbody>
+</table>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Agregar Indicador</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="/indicadores" id="needs-validation" method="POST" onSubmit="return validarDatos();" novalidate>
+					<label for="exampleInputEmail1">Nombre del indicador</label>
+					<input type="text" class="form-control" id="nombre" name="nombre" aria-describedby="emailHelp" placeholder="Ejemplo: ROE" required>
+					<small id="emailHelp" class="form-text text-muted">Los indicadores indican tu vida!</small>
+					<p id="feedback1"></p>
+					<label for="exampleInputEmail1">Formula</label>
+					<input type="text" class="form-control" id="formula" name="formula" aria-describedby="emailHelp" placeholder="Ejemplo: 5+ROE" required>
+					<p id="feedback2"></p>
+					<hr>
+					<button type="submit" style="float: right" class="btn btn-success">Aceptar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+{{/partial}}
+
+{{> layout.hbs }}
